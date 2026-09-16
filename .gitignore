@@ -1,4 +1,7 @@
-rekonstruktion
 .env
 .DS_Store
 .worktrees/
+__pycache__/
+
+# Altbestand: Nachbau der alten Website, reines Nachschlagematerial (21 MB)
+rekonstruktion original/

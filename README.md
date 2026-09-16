@@ -3,40 +3,77 @@
 Neue Website des **Alkawakibi Verein e. V.** – deutsch-syrischer Verein für
 Demokratie und Menschenrechte, Berlin.
 
-Reines HTML, CSS und JavaScript ohne Bauprozess, geeignet für GitHub Pages.
+Reines HTML, CSS und JavaScript, kein Framework, keine Abhängigkeiten.
 
 ## Drei Entwürfe zur Auswahl
 
 Der Vorstand hat zwei Vorbild-Websites genannt, deren Anforderungen sich nicht
 widerspruchsfrei vereinen lassen (Logo in Schwarz/Dunkelgrün, gewünschtes
 Farbschema in Türkis/Gelb). Statt eines Kompromisses liegen drei vollständig
-ausgearbeitete Entwürfe vor – inhaltlich identisch, gestalterisch grundverschieden.
+ausgearbeitete Entwürfe vor – **inhaltlich identisch, gestalterisch
+grundverschieden**. Jeder ist eine komplette, eigenständige Website aus
+zwölf Seiten plus Fehlerseite.
 
-| Branch | Entwurf | Idee |
+| Ordner | Entwurf | Idee |
 |---|---|---|
-| `entwurf-1-petrol-gold` | **Petrol & Gold** | Durchgehend dunkel, Petrol mit Goldakzent, Serifen-Überschriften. Direkte Umsetzung des Farbvorbilds. |
-| `entwurf-2-institut` | **Institut** | Hell und redaktionell in den Logofarben Schwarz/Dunkelgrün, klare Themenbereiche, Seitenleisten. Strukturvorbild e-cfr.org. |
-| `entwurf-3-manifest` | **Manifest** | Modernistisch-geometrisch, Sand und Tiefschwarz mit grünen Diagonalflächen, große Typografie. |
-
-Auf `main` liegt eine Vergleichsseite, die alle drei nebeneinander zeigt.
+| `frontend/entwurf-1-petrol-gold` | **Petrol & Gold** | Durchgehend dunkel, Petrol mit Goldakzent, Serifen-Überschriften. Direkte Umsetzung des Farbvorbilds. |
+| `frontend/entwurf-2-institut` | **Institut** | Hell und redaktionell in den Logofarben Schwarz/Dunkelgrün, klare Themenbereiche, Seitenleisten. Strukturvorbild e-cfr.org. |
+| `frontend/entwurf-3-manifest` | **Manifest** | Modernistisch-geometrisch, Sand und Tiefschwarz mit grünen Diagonalflächen, große Typografie. |
 
 ## Aufbau
 
 ```
-assets/        Bilder, Schriften, Dokumente – in allen Entwürfen identisch
-inhalte/       Redaktionsplan und Satzung als Textgrundlage
-backend/       Kontaktformular: Google Apps Script + Supabase
-varianten/     nur auf main: Kopien der drei Entwürfe für die Vergleichsseite
+assets/       Bilder, Schriften, Dokumente – in allen Entwürfen identisch
+inhalte/      Redaktionsplan und Satzung als Textgrundlage
+backend/      Kontaktformular: Google Apps Script + Supabase
+werkzeuge/    Quelle der Entwürfe (siehe unten)
+frontend/     die drei fertigen Websites
 ```
+
+### Warum ein Generator?
+
+Die drei Entwürfe tragen dieselben Texte. Stünden sie dreifach in 39 HTML-Dateien,
+müsste jede Korrektur – eine Telefonnummer, ein Satzungsparagraf, ein
+Navigationspunkt – bis zu 39-mal nachgezogen werden. Deshalb liegen Inhalt und
+Gestaltung getrennt in `werkzeuge/`, und die HTML-Dateien werden daraus erzeugt:
+
+```
+werkzeuge/inhalte.py         alle Texte, Adressen, Kontodaten – einmal
+werkzeuge/basis.py           welche Seite welche Inhalte zeigt
+werkzeuge/entwurf_basis.py   gemeinsame Bausteine aller drei Entwürfe
+werkzeuge/css_basis.py       gemeinsames CSS-Fundament
+werkzeuge/skripte.py         gemeinsames JavaScript
+werkzeuge/entwurf1.py        Gestaltung Petrol & Gold
+werkzeuge/entwurf2.py        Gestaltung Institut
+werkzeuge/entwurf3.py        Gestaltung Manifest
+werkzeuge/bauen.py           erzeugt frontend/
+```
+
+**Wichtig:** `frontend/` wird erzeugt. Änderungen dort gehen beim nächsten Bauen
+verloren – geändert wird in `werkzeuge/`.
+
+## Bauen
+
+```
+python3 werkzeuge/bauen.py        alle drei Entwürfe
+python3 werkzeuge/bauen.py 2      nur Entwurf 2
+```
+
+Kein Python-Paket nötig, nur die Standardbibliothek.
+
+## Ansehen
+
+```
+python3 -m http.server -d frontend/entwurf-1-petrol-gold 8000
+```
+
+Dann http://localhost:8000 öffnen.
 
 ## Veröffentlichen
 
-**Einen Entwurf live stellen:** in den Repository-Einstellungen unter
-*Pages → Build and deployment → Source: Deploy from a branch* den gewünschten
-Branch und den Ordner `/ (root)` wählen.
-
-**Alle drei zum Vergleich zeigen:** `main` veröffentlichen. Die Startseite ist
-dann die Vergleichsseite, die Entwürfe liegen unter `varianten/entwurf-1/` usw.
+Ist ein Entwurf ausgewählt, wird sein Ordner über GitHub Pages veröffentlicht
+(*Einstellungen → Pages*). Solange die Auswahl offen ist, liegen alle drei
+nebeneinander im Repository.
 
 **Kontaktformular:** siehe `backend/README.md`. Ohne eingetragenen Endpunkt
 funktioniert die Seite weiter, das Formular bietet dann den Versand über das
