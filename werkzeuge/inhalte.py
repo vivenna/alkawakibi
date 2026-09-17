@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Sämtliche Inhalte der Website als Datenstruktur.
 
-Die drei Entwürfe greifen auf dieses Modul zu. Dadurch sind ihre Texte
+Alle Entwürfe greifen auf dieses Modul zu. Dadurch sind ihre Texte
 garantiert identisch und unterscheiden sich nur in der Gestaltung.
 
 Wortlaut stammt aus inhalte/redaktionsplan.md. Nichts hier frei erfinden.

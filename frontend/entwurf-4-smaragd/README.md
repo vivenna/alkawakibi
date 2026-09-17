@@ -1,4 +1,4 @@
-# Entwurf: Manifest
+# Entwurf: Smaragd
 
 Vollständiger Entwurf für die Website des Alkawakibi Verein e. V. –
 zwölf Seiten plus Fehlerseite, reines HTML, CSS und JavaScript.
@@ -10,12 +10,12 @@ siehe unten.
 
 Repository-Einstellungen → *Pages* → *Build and deployment* →
 *Source: GitHub Actions*, dann in `.github/workflows/` den Ordner
-`frontend/entwurf-3-manifest` als Veröffentlichungsquelle eintragen.
+`frontend/entwurf-4-smaragd` als Veröffentlichungsquelle eintragen.
 
 Zum Ansehen genügt lokal:
 
 ```
-python3 -m http.server -d frontend/entwurf-3-manifest 8000
+python3 -m http.server -d frontend/entwurf-4-smaragd 8000
 ```
 
 ## Seiten
@@ -52,6 +52,6 @@ python3 werkzeuge/bauen.py
 ```
 
 Texte stehen in `werkzeuge/inhalte.py` (Quelle: `inhalte/redaktionsplan.md`),
-die Gestaltung dieses Entwurfs in `werkzeuge/entwurf3.py`.
+die Gestaltung dieses Entwurfs in `werkzeuge/entwurf4.py`.
 Wer lieber direkt im HTML arbeitet, kann das tun – dann sollte der Bauläufer
 allerdings nicht mehr über die Dateien laufen.

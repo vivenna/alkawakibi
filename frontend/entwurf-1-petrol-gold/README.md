@@ -44,7 +44,7 @@ dann den Versand über das E-Mail-Programm an.
 
 ## Ändern
 
-Die Seiten werden aus `werkzeuge/` erzeugt, damit alle drei Entwürfe dieselben
+Die Seiten werden aus `werkzeuge/` erzeugt, damit alle Entwürfe dieselben
 Texte tragen:
 
 ```

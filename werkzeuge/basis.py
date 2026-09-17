@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Gemeinsames Gerüst für alle drei Entwürfe.
+"""Gemeinsames Gerüst für alle Entwürfe.
 
 Die Seiteninhalte werden hier einmal zusammengesetzt und dabei ausschließlich
 über die Bausteine des jeweiligen Entwurfs ausgegeben. Dadurch sind die Texte

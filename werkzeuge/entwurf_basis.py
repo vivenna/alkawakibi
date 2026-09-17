@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Basisklasse eines Entwurfs: HTML-Rahmen, Kopf, Fuß und alle Bausteine.
 
-Die drei Entwürfe erben hiervon und überschreiben, was sie anders machen.
+Die Entwürfe erben hiervon und überschreiben, was sie anders machen.
 """
 import os
 
@@ -500,7 +500,7 @@ dann den Versand über das E-Mail-Programm an.
 
 ## Ändern
 
-Die Seiten werden aus `werkzeuge/` erzeugt, damit alle drei Entwürfe dieselben
+Die Seiten werden aus `werkzeuge/` erzeugt, damit alle Entwürfe dieselben
 Texte tragen:
 
 ```

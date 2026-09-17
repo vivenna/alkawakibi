@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Erzeugt die drei Website-Entwürfe.
+"""Erzeugt die vier Website-Entwürfe.
 
 Aufruf aus dem Projektordner:
-    python3 werkzeuge/bauen.py            alle drei Entwürfe
+    python3 werkzeuge/bauen.py            alle vier Entwürfe
     python3 werkzeuge/bauen.py 1          nur Entwurf 1
 """
 import os
@@ -20,6 +20,7 @@ import skripte
 from entwurf1 import PetrolGold
 from entwurf2 import Institut
 from entwurf3 import Manifest
+from entwurf4 import Smaragd
 
 DOMAIN = 'https://alkawakibi.org/'
 
@@ -119,7 +120,7 @@ def bauen(d):
 
 
 if __name__ == '__main__':
-    entwuerfe = {'1': PetrolGold, '2': Institut, '3': Manifest}
-    gewaehlt = sys.argv[1:] or ['1', '2', '3']
+    entwuerfe = {'1': PetrolGold, '2': Institut, '3': Manifest, '4': Smaragd}
+    gewaehlt = sys.argv[1:] or ['1', '2', '3', '4']
     for nummer in gewaehlt:
         bauen(entwuerfe[nummer]())
