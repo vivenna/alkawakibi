@@ -559,6 +559,19 @@ DATENSCHUTZ = [
     ('Kontakt in Datenschutzfragen', ['info@alkawakibi.org']),
 ]
 
+# ---------------------------------------------------------------- Merkmale
+#
+# Vier Kurzangaben für einen Streifen unter dem Aufmacher. Kein neuer Inhalt:
+# jede Zeile verdichtet eine Aussage, die auf der Website ohnehin steht
+# (Fußzeile, Spendenaufruf, Auszeichnung, Vereinsanschrift).
+
+MERKMALE = [
+    ('Gemeinnützig', 'als gemeinnützig anerkannt'),
+    ('Ehrenamtlich', 'getragen von Mitgliedern'),
+    ('1. Preis 2017', 'Berliner Gesundheitspreis'),
+    ('Berlin', 'Sitz im Wedding'),
+]
+
 # ---------------------------------------------------------------- Seitenköpfe
 
 HERO = {

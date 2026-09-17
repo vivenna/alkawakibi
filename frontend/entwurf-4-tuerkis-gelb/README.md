@@ -1,4 +1,4 @@
-# Entwurf: Smaragd
+# Entwurf: Türkis & Gelb
 
 Vollständiger Entwurf für die Website des Alkawakibi Verein e. V. –
 zwölf Seiten plus Fehlerseite, reines HTML, CSS und JavaScript.
@@ -10,12 +10,12 @@ siehe unten.
 
 Repository-Einstellungen → *Pages* → *Build and deployment* →
 *Source: GitHub Actions*, dann in `.github/workflows/` den Ordner
-`frontend/entwurf-4-smaragd` als Veröffentlichungsquelle eintragen.
+`frontend/entwurf-4-tuerkis-gelb` als Veröffentlichungsquelle eintragen.
 
 Zum Ansehen genügt lokal:
 
 ```
-python3 -m http.server -d frontend/entwurf-4-smaragd 8000
+python3 -m http.server -d frontend/entwurf-4-tuerkis-gelb 8000
 ```
 
 ## Seiten

@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Erzeugt die vier Website-Entwürfe.
+"""Erzeugt die fünf Website-Entwürfe.
 
 Aufruf aus dem Projektordner:
-    python3 werkzeuge/bauen.py            alle vier Entwürfe
+    python3 werkzeuge/bauen.py            alle fünf Entwürfe
     python3 werkzeuge/bauen.py 1          nur Entwurf 1
 """
 import os
@@ -20,13 +20,19 @@ import skripte
 from entwurf1 import PetrolGold
 from entwurf2 import Institut
 from entwurf3 import Manifest
-from entwurf4 import Smaragd
+from entwurf4 import TuerkisGelb
+from entwurf5 import Smaragd
 
 DOMAIN = 'https://alkawakibi.org/'
 
 
 def seiteninhalt(d, datei, paragrafen):
     if datei == 'index.html':
+        # Ein Entwurf darf die Startseite selbst zusammensetzen (andere
+        # Reihenfolge, zusätzliche Abschnitte) – die Texte kommen weiterhin
+        # ausschließlich aus inhalte.py.
+        if hasattr(d, 'startseite'):
+            return d.startseite()
         return basis.startseite(d)
     if datei == 'wer-wir-sind.html':
         return basis.wer_wir_sind(d)
@@ -120,7 +126,8 @@ def bauen(d):
 
 
 if __name__ == '__main__':
-    entwuerfe = {'1': PetrolGold, '2': Institut, '3': Manifest, '4': Smaragd}
-    gewaehlt = sys.argv[1:] or ['1', '2', '3', '4']
+    entwuerfe = {'1': PetrolGold, '2': Institut, '3': Manifest,
+                 '4': TuerkisGelb, '5': Smaragd}
+    gewaehlt = sys.argv[1:] or ['1', '2', '3', '4', '5']
     for nummer in gewaehlt:
         bauen(entwuerfe[nummer]())
