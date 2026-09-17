@@ -404,6 +404,8 @@ class Entwurf:
                         offen = None
                     if art == 'zwischentitel':
                         innen += '          <h3>%s</h3>\n' % e(text)
+                    elif art == 'unterschrift':
+                        innen += '          <p class="unterschrift">%s</p>\n' % e(text)
                     else:
                         innen += '          <p>%s</p>\n' % e(text)
             if offen:

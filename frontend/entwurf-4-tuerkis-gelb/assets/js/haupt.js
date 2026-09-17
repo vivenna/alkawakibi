@@ -22,13 +22,23 @@
     if (!schalter || !menue) { return; }
 
     var fokussierbar = 'a[href], button:not([disabled]), input, select, textarea';
+    /* Unterhalb dieser Breite ist das Menü hinter dem Schalter verborgen. */
+    var schmal = window.matchMedia('(max-width: 899px)');
 
     function offen() { return schalter.getAttribute('aria-expanded') === 'true'; }
+
+    /* Das geschlossene Menü steht je nach Entwurf neben dem Bildschirm oder
+     * unter dem Kopf. Sichtbar ist es dann nicht, mit der Tabulatortaste wäre
+     * es aber weiterhin erreichbar – der Fokus liefe ins Leere. */
+    function erreichbarkeit() {
+      menue.inert = schmal.matches && !offen();
+    }
 
     function setzen(zustand) {
       schalter.setAttribute('aria-expanded', zustand ? 'true' : 'false');
       document.body.classList.toggle('menue-offen', zustand);
       menue.classList.toggle('ist-offen', zustand);
+      erreichbarkeit();
       if (zustand) {
         var erstes = menue.querySelector(fokussierbar);
         if (erstes) { erstes.focus(); }
@@ -40,6 +50,26 @@
       setzen(neu);
       if (!neu) { schalter.focus(); }
     });
+
+    /* Klick neben das Menü schließt es */
+    document.addEventListener('click', function (ereignis) {
+      if (!offen() || !ereignis.target.closest) { return; }
+      if (ereignis.target.closest('#hauptmenue') || ereignis.target.closest('.menue-schalter')) { return; }
+      setzen(false);
+    });
+
+    /* Wird das Fenster breit, übernimmt die Navigationsleiste. Der Zustand des
+     * Schalters darf dann nicht offen stehen bleiben. */
+    function breiteGeaendert() {
+      if (!schmal.matches && offen()) { setzen(false); }
+      erreichbarkeit();
+    }
+    if (schmal.addEventListener) {
+      schmal.addEventListener('change', breiteGeaendert);
+    } else if (schmal.addListener) {
+      schmal.addListener(breiteGeaendert);
+    }
+    erreichbarkeit();
 
     document.addEventListener('keydown', function (ereignis) {
       if (ereignis.key !== 'Escape') { return; }
@@ -129,6 +159,12 @@
     var formular = document.getElementById('kontaktformular-formular');
     if (!formular) { return; }
     var meldung = document.getElementById('formular-meldung');
+
+    /* Ohne dies fängt die eingebaute Prüfung des Browsers das Absenden ab,
+     * das submit-Ereignis bleibt aus und die Hinweise unten werden nie
+     * angezeigt. Die Abschaltung steht hier und nicht im HTML: Ist JavaScript
+     * aus, soll die Browserprüfung weiterhin greifen. */
+    formular.noValidate = true;
 
     function fehlerZeigen(kennung, text) {
       var feld = formular.elements[kennung];
@@ -255,7 +291,7 @@
     overlay.innerHTML =
       '<button class="lichtkasten-schliessen" type="button">Schließen</button>' +
       '<button class="lichtkasten-zurueck" type="button" aria-label="Vorheriges Bild">&#8249;</button>' +
-      '<img class="lichtkasten-bild" src="" alt="">' +
+      '<img class="lichtkasten-bild" alt="">' +
       '<button class="lichtkasten-weiter" type="button" aria-label="Nächstes Bild">&#8250;</button>' +
       '<p class="lichtkasten-zaehler" aria-live="polite"></p>';
     document.body.appendChild(overlay);

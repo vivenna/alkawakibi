@@ -109,10 +109,13 @@ class Institut(Entwurf):
         tafeln = []
         for nummer, t in enumerate(TAFELN):
             zuerst = ' fetchpriority="high"' if nummer == 0 else ' loading="lazy"'
+            # Eine Seite hat genau eine Hauptüberschrift. Die weiteren Tafeln
+            # des Wechslers sind ihr untergeordnet.
+            rang = 'h1' if nummer == 0 else 'h2'
             tafeln.append(f"""        <article class="aufmacher-tafel">
           <div class="tafel-text">
             <p class="kicker">{e(t['kicker'])}</p>
-            <h1 class="tafel-titel">{e(t['titel'])}</h1>
+            <{rang} class="tafel-titel">{e(t['titel'])}</{rang}>
             <p>{e(t['text'])}</p>
             <p class="schaltflaechen">
               <a class="schaltflaeche stufe-1" href="{t['ziel']}">{e(t['linktext'])}</a>
@@ -309,8 +312,15 @@ a:hover { color: var(--gruen-hell); }
 @media (max-width: 899px) {
   .menue-schalter { display: flex; }
   .navi-spende { margin-left: auto; }
+  /* Auf Telefonen ist die Navigationsleiste eingeklappt. Bliebe der Kopf
+     dann unbeweglich, scrollte der Menüknopf mit dem Seitenanfang aus dem
+     Bild und wäre von weiter unten nicht mehr erreichbar. */
+  .kopfbereich { position: sticky; top: 0; z-index: 100; }
   .hauptnavigation { display: none; }
-  .hauptnavigation.ist-offen { display: block; }
+  .hauptnavigation.ist-offen {
+    display: block;
+    max-height: calc(100vh - 6rem); overflow-y: auto;
+  }
   .navi-liste { flex-direction: column; align-items: stretch; }
   .navi-punkt, .navi-punkt:first-child {
     border: 0; border-bottom: 1px solid var(--grau-linie);
