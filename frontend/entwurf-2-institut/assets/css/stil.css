@@ -124,7 +124,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 
 .konto-daten { display: grid; grid-template-columns: max-content 1fr; gap: .4rem 1.2rem; margin: 0; }
 .konto-daten dt { font-weight: 600; }
-.konto-daten dd { margin: 0; }
+.konto-daten dd { margin: 0; color: var(--schwarz); }
 .iban { font-variant-numeric: tabular-nums; letter-spacing: .04em; white-space: nowrap; }
 
 /* ==========================================================================
