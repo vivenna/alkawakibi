@@ -175,7 +175,7 @@
       meldung.textContent = text;
       meldung.className = 'formular-meldung meldung-' + art;
       meldung.setAttribute('role', art === 'fehler' ? 'alert' : 'status');
-      if (art === 'fehler' && werte) {
+      if ((art === 'fehler' || art === 'hinweis') && werte) {
         var verweis = document.createElement('a');
         verweis.href = ersatzVerweis(werte);
         verweis.textContent = 'Nachricht per E-Mail-Programm senden';
@@ -209,7 +209,7 @@
       };
 
       if (!KONF.formularEndpunkt) {
-        melden('Der Versand ist noch nicht eingerichtet.', 'fehler', ergebnis.werte);
+        melden('Der Online-Versand ist hier noch nicht eingerichtet.', 'hinweis', ergebnis.werte);
         return;
       }
 

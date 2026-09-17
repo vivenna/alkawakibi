@@ -453,6 +453,7 @@ a:hover { color: var(--gruen-hell); }
 }
 .konto-titel { font-size: 1.1rem; color: var(--gruen); }
 .konto-daten dt { color: var(--grau); font-weight: 600; font-size: .9rem; }
+.konto-daten dd { color: var(--schwarz); }
 .iban-kopieren {
   margin-left: .6rem; background: var(--weiss); color: var(--gruen);
   border: 1px solid var(--gruen); border-radius: 3px; padding: .2rem .6rem; font-size: .78rem;

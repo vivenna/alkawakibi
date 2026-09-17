@@ -124,7 +124,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 
 .konto-daten { display: grid; grid-template-columns: max-content 1fr; gap: .4rem 1.2rem; margin: 0; }
 .konto-daten dt { font-weight: 600; }
-.konto-daten dd { margin: 0; color: var(--schwarz); }
+.konto-daten dd { margin: 0; }
 .iban { font-variant-numeric: tabular-nums; letter-spacing: .04em; white-space: nowrap; }
 
 /* ==========================================================================
@@ -518,6 +518,7 @@ a:hover { color: var(--gruen-hell); }
 }
 .konto-titel { font-size: 1.1rem; color: var(--gruen); }
 .konto-daten dt { color: var(--grau); font-weight: 600; font-size: .9rem; }
+.konto-daten dd { color: var(--schwarz); }
 .iban-kopieren {
   margin-left: .6rem; background: var(--weiss); color: var(--gruen);
   border: 1px solid var(--gruen); border-radius: 3px; padding: .2rem .6rem; font-size: .78rem;
