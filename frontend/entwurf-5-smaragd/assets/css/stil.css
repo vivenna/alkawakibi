@@ -18,6 +18,11 @@ body {
   overflow-x: hidden;
 }
 
+/* Lange deutsche Komposita („Datenschutzerklärung“) sind in großen
+   Überschriftengraden breiter als ein Telefonbildschirm. Sie werden getrennt
+   statt über den Rand geschoben. */
+h1, h2, h3, h4 { overflow-wrap: break-word; hyphens: auto; }
+
 img, picture, svg { max-width: 100%; height: auto; display: block; }
 ul, ol { margin: 0; padding: 0; }
 figure { margin: 0; }
@@ -116,16 +121,30 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .nummernliste { list-style: none; display: grid; gap: var(--abstand-mittel); }
 .nummer-punkt { display: grid; grid-template-columns: auto 1fr; gap: var(--abstand-klein); }
 
+/* Schlussformel der Satzung: die Unterschriftslinie des Originals */
+.unterschrift { border-top: 1px solid; padding-top: .8rem; margin-top: 2.5rem; max-width: 34rem; }
+
 .downloads { list-style: none; display: grid; gap: .6rem; }
 .download { display: flex; align-items: center; gap: .9rem; text-decoration: none; }
 
 .schaltflaechen { display: flex; flex-wrap: wrap; gap: .75rem; }
 .schaltflaeche { display: inline-block; text-decoration: none; text-align: center; }
 
-.konto-daten { display: grid; grid-template-columns: max-content 1fr; gap: .4rem 1.2rem; margin: 0; }
+.konto-daten { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: .4rem 1.2rem; margin: 0; }
 .konto-daten dt { font-weight: 600; }
 .konto-daten dd { margin: 0; }
 .iban { font-variant-numeric: tabular-nums; letter-spacing: .04em; white-space: nowrap; }
+
+/* Auf schmalen Bildschirmen reicht die Breite nicht für Beschriftung und
+   Wert nebeneinander – sonst wird die IBAN rechts abgeschnitten. Dort
+   stehen die Angaben untereinander und die IBAN darf an ihren Leerstellen
+   umbrechen (also zwischen den Vierergruppen, nicht mitten in einer Zahl). */
+@media (max-width: 36rem) {
+  .konto-daten { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .konto-daten dt { margin-top: .7rem; }
+  .konto-daten dt:first-child { margin-top: 0; }
+  .iban { white-space: normal; }
+}
 
 /* ==========================================================================
    4. Kopfbereich und Navigation
@@ -156,7 +175,16 @@ button { font: inherit; color: inherit; cursor: pointer; }
 }
 .untermenue-offen .pfeil { transform: rotate(-135deg); }
 
-.menue-schalter { display: none; border: 0; background: none; align-items: center; gap: .5rem; }
+/* Der Schalter muss über dem geöffneten Menü liegen. Schiebt ein Entwurf das
+   Menü als Tafel über den Bildschirm, verdeckt diese sonst den Schalter und
+   das Menü lässt sich nicht mehr schließen. */
+.menue-schalter {
+  display: none; border: 0; background: none; align-items: center; gap: .5rem;
+  position: relative; z-index: 2;
+}
+@media (max-width: 899px) {
+  .hauptnavigation { z-index: 1; }
+}
 .menue-striche { position: relative; display: block; width: 1.4rem; height: 2px; background: currentColor; }
 .menue-striche::before, .menue-striche::after {
   content: ''; position: absolute; left: 0; width: 100%; height: 2px; background: currentColor;

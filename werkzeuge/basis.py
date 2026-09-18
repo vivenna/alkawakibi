@@ -29,7 +29,7 @@ def satzung_lesen(quelle):
     """Liest inhalte/satzung.md und gibt [(id, titel, [knoten])] zurück.
 
     Ein Knoten ist ('punkt', text) oder ('unterpunkt', text) oder
-    ('zwischentitel', text) oder ('absatz', text).
+    ('zwischentitel', text) oder ('absatz', text) oder ('unterschrift', text).
     """
     zeilen = open(quelle, encoding='utf-8').read().split('\n')
     paragrafen, aktuell = [], None
@@ -57,7 +57,16 @@ def satzung_lesen(quelle):
             elif aufzaehlung:
                 aktuell['knoten'].append(('unterpunkt', aufzaehlung.group(1)))
             else:
-                aktuell['knoten'].append(('absatz', text))
+                # Die Schlussformel beginnt in der Vorlage mit der gepunkteten
+                # Unterschriftslinie des Papieroriginals. Eine solche Punktkette
+                # lässt sich nicht umbrechen und zerrt das Seitenlayout auf
+                # Telefonen weit über den Bildschirmrand hinaus. Sie wird daher
+                # aus dem Text genommen und als Linie gezeichnet.
+                unterschrift = re.match(r'^[…\.·_]{6,}\s*(.*)$', text)
+                if unterschrift:
+                    aktuell['knoten'].append(('unterschrift', unterschrift.group(1)))
+                else:
+                    aktuell['knoten'].append(('absatz', text))
     # Kopfzeilen der Datei (Titel, Vorbemerkung) verwerfen
     return [p for p in paragrafen if p['titel'].startswith('§')]
 

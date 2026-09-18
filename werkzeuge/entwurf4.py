@@ -8,8 +8,10 @@ das vom Vorstand gewünschte Türkis mit einem kräftigen Gelb, in den Werten
 von malerroundaboutiffouzar.de.
 
 Von dort stammen die Farben, nicht die Gestaltung: kein zentrierter Aufmacher,
-keine Leuchtringe, kein Scroll-Symbol. Der tiefste Ton zieht ins Grüne, damit
-das schwarz-grüne Logo darin steht, als gehöre es dazu.
+keine Leuchtringe, kein Scroll-Symbol. Auf Wunsch des Vorstands treten Türkis
+und Gelb jetzt deutlicher hervor, der Grünstich der ersten Fassung ist
+zurückgenommen – die dunklen Töne sind bewusst ins Blaue statt ins Grüne
+gezogen und kräftiger gesättigt.
 
 Gegenüber Entwurf 1 kommen hinzu: ein schmaler Merkmalstreifen unter dem
 Aufmacher, der Wechsel aus türkisen und hellen Abschnitten (lange Texte wie
@@ -31,7 +33,7 @@ class TuerkisGelb(Entwurf):
     schriften = ['cormorant-garamond', 'inter', 'noto-naskh-arabic']
     logo = 'assets/bilder/logo.png'
     logo_fuss = 'assets/bilder/logo.png'
-    farbe_browser = '#123634'
+    farbe_browser = '#0e3a41'
 
     # ------------------------------------------------------------- Startseite
 
@@ -186,13 +188,13 @@ class TuerkisGelb(Entwurf):
    ========================================================================== */
 
 :root {
-  /* Farben – der tiefste Ton zieht ins Grüne, dorthin, wo das Logo steht */
-  --tuerkis-nacht:    #0d2b2a;
-  --tuerkis-tief:     #123634;
-  --tuerkis-dunkel:   #1c4b4b;
-  --tuerkis:          #2c6465;
-  --tuerkis-mittel:   #588789;   /* Grundton des Farbvorbilds */
-  --tuerkis-linie:    #2f6a6a;
+  /* Farben – bewusst ins Blaue statt ins Grüne gezogen, kräftiger gesättigt */
+  --tuerkis-nacht:    #0a2e33;
+  --tuerkis-tief:     #0e3a41;
+  --tuerkis-dunkel:   #155864;
+  --tuerkis:          #1c7686;
+  --tuerkis-mittel:   #4aa0b0;   /* Grundton des Farbvorbilds, angehoben */
+  --tuerkis-linie:    #237e8c;
   --nebel-hell:       #e9efed;
   --tinte:            #102e2d;
   --gelb:             #f7cf1d;
@@ -240,8 +242,8 @@ class TuerkisGelb(Entwurf):
 body {
   background-color: var(--tuerkis-dunkel);
   background-image:
-    radial-gradient(54rem 36rem at 84% -6%, rgba(88, 135, 137, .38), transparent 66%),
-    radial-gradient(42rem 32rem at 0% 40%, rgba(18, 54, 52, .55), transparent 62%);
+    radial-gradient(54rem 36rem at 84% -6%, rgba(74, 160, 176, .4), transparent 66%),
+    radial-gradient(42rem 32rem at 0% 40%, rgba(14, 58, 65, .55), transparent 62%);
   background-attachment: fixed;
   color: var(--text);
   font-family: var(--sans);
@@ -292,7 +294,7 @@ a:hover { color: var(--verweis-hover); }
   font-family: var(--serif); font-size: 1.5rem; font-style: italic;
   color: var(--gelb-hell); max-width: 44ch; margin-top: 1.5em;
 }
-.abschnitt-hell .hervorhebung, .abschnitt-text .hervorhebung { color: #14615f; }
+.abschnitt-hell .hervorhebung, .abschnitt-text .hervorhebung { color: #0f6a74; }
 
 /* Feine Linie unter den Seitenüberschriften – die Goldlinie aus Entwurf 1,
    hier in Gelb und mit einem Hauch Verlauf */
@@ -403,8 +405,8 @@ a:hover { color: var(--verweis-hover); }
 .hero-schleier {
   position: relative; z-index: 1;
   background:
-    linear-gradient(to bottom, rgba(13, 43, 42, .30) 0%, rgba(18, 54, 52, .72) 58%, rgba(28, 75, 75, .96) 100%),
-    linear-gradient(to right, var(--tuerkis-nacht) 0%, rgba(18, 54, 52, .55) 55%, rgba(44, 100, 101, .25) 100%);
+    linear-gradient(to bottom, rgba(10, 46, 51, .30) 0%, rgba(14, 58, 65, .72) 58%, rgba(21, 88, 100, .96) 100%),
+    linear-gradient(to right, var(--tuerkis-nacht) 0%, rgba(14, 58, 65, .55) 55%, rgba(28, 118, 134, .3) 100%);
 }
 .hero-inhalt {
   position: relative; z-index: 2;
@@ -459,13 +461,13 @@ a:hover { color: var(--verweis-hover); }
    Helle Abschnitte setzen sie neu – alle Bausteine folgen automatisch. */
 .abschnitt-hell, .abschnitt-text {
   --text:          var(--tinte);
-  --text-leise:    #4a6c6b;
+  --text-leise:    #4a6b74;
   --ueberschrift:  var(--tuerkis-nacht);
-  --verweis:       #14615f;
-  --verweis-hover: #0c4645;
-  --kicker-farbe:  #14615f;
+  --verweis:       #0f6a74;
+  --verweis-hover: #0a4f57;
+  --kicker-farbe:  #0f6a74;
   --flaeche:       var(--weiss);
-  --linie:         #cbdad8;
+  --linie:         #cddbe0;
   background: var(--verlauf-hell);
   color: var(--text);
 }
@@ -518,10 +520,10 @@ a:hover { color: var(--verweis-hover); }
 }
 /* Auf hellem Grund ist Gelb als Schrift zu schwach – dort steht Türkis */
 .abschnitt-hell .stufe-2, .abschnitt-text .stufe-2 {
-  color: #14615f; border-color: rgba(20, 97, 95, .5);
+  color: #0f6a74; border-color: rgba(15, 106, 116, .5);
 }
 .abschnitt-hell .stufe-2:hover, .abschnitt-text .stufe-2:hover {
-  background: rgba(20, 97, 95, .1); border-color: #14615f; color: #0c4645;
+  background: rgba(15, 106, 116, .1); border-color: #0f6a74; color: #0a4f57;
 }
 
 /* --------------------------------------------------------- Karten */
@@ -708,7 +710,7 @@ a:hover { color: var(--verweis-hover); }
 
 /* --------------------------------------------------------- Lichtkasten */
 
-.lichtkasten { background: rgba(13, 43, 42, .96); }
+.lichtkasten { background: rgba(10, 46, 51, .96); }
 .lichtkasten button { color: var(--creme); }
 .lichtkasten button:hover { color: var(--gelb); }
 .lichtkasten-zurueck, .lichtkasten-weiter { font-size: 2.4rem; padding: .3rem .8rem; }
